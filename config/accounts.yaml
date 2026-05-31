@@ -10,16 +10,16 @@
 #   - anthropic          Official Anthropic Messages API via @ai-sdk/anthropic.
 
 accounts:
-  - name: "codex"
+  - name: "cc"
     provider: "openai-compatible"
-    model: "gpt-5.4"
+    model: "claude-sonnet-4-6"
     messages:
       - role: "user"
         content: "ping"
 
-  - name: "cc"
+  - name: "opencode-go"
     provider: "openai-compatible"
-    model: "claude-sonnet-4-6"
+    model: "deepseek-v4-flash"
     messages:
       - role: "user"
         content: "ping"
