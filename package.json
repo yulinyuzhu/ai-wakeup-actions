@@ -1,0 +1,16 @@
+{
+  "name": "ai-wakeup-actions",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "once": "node src/once.js"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "latest",
+    "@ai-sdk/openai": "latest",
+    "@ai-sdk/openai-compatible": "latest",
+    "ai": "latest",
+    "yaml": "latest"
+  }
+}
