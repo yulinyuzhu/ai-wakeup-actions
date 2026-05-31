@@ -18,13 +18,23 @@ function serializeError(err) {
   return {
     name: err?.name,
     message: err?.message || String(err),
-    url: err?.url,
+    url: maskURL(err?.url),
     statusCode: err?.statusCode || err?.status,
     responseBody: err?.responseBody,
     parts: err?.parts,
     finishReason: err?.finishReason,
     usage: err?.usage,
   };
+}
+
+function maskURL(url) {
+  if (!url) return undefined;
+  try {
+    const u = new URL(url);
+    return u.hostname;
+  } catch {
+    return String(url).split("/").slice(0, 3).join("/");
+  }
 }
 
 function createModel(account, model, baseURL, apiKey) {
@@ -88,7 +98,7 @@ export async function sendAll(accounts) {
       await info(`[${name}] OK`, {
         model,
         provider,
-        baseURL: baseURL || "official",
+        baseURL: maskURL(baseURL),
         chars: text.length,
         response: text.slice(0, 120).replace(/\s+/g, " "),
       });
@@ -97,7 +107,7 @@ export async function sendAll(accounts) {
       await error(`[${name}] FAIL`, {
         model,
         provider,
-        baseURL: baseURL || "official",
+        baseURL: maskURL(baseURL),
         ...serializeError(err),
       });
       results[name] = false;
