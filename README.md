@@ -95,6 +95,10 @@ cron 格式为 5 个字段：`分 时 日 月 星期`（`*` 代表每）。
 - API key 和 URL 通过 GitHub Secrets 注入，Actions 日志自动脱敏
 - 仓库可设为公开，Fork 的人不会看到你的 Secrets
 
+## 注意事项
+
+GitHub 会在仓库 **60 天无任何活动**（git push 也算活动）后自动停用 scheduled workflow。偶尔改一下 `config/accounts.yaml` 再推送即可保持活跃。
+
 ## License
 
 MIT

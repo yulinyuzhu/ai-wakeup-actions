@@ -95,6 +95,10 @@ The cron format is 5 fields: `minute hour day month weekday` (`*` means every).
 - Keys and URLs are injected via GitHub Secrets and automatically masked in logs
 - The repo can be public; forked copies do not inherit your Secrets
 
+## Caveats
+
+GitHub **disables scheduled workflows after 60 days of repo inactivity** (git push counts as activity). Make an occasional edit to `config/accounts.yaml` and push to keep it alive.
+
 ## License
 
 MIT
