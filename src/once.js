@@ -5,6 +5,23 @@ import { sendAll } from "./send.js";
 
 const CONFIG_PATH = process.env.ACCOUNTS_PATH || "config/accounts.yaml";
 
+const realConsoleError = console.error.bind(console);
+
+function stripSensitive(obj) {
+  if (!obj || typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) return obj.map(stripSensitive);
+  const out = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (k === "url" || k === "baseURL" || k === "requestBodyValues" || k === "responseHeaders") continue;
+    out[k] = stripSensitive(v);
+  }
+  return out;
+}
+
+console.error = (...args) => {
+  realConsoleError(...args.map((a) => (a instanceof Error ? stripSensitive({ name: a.name, message: a.message, ...a }) : stripSensitive(a))));
+};
+
 async function main() {
   const raw = await readFile(CONFIG_PATH, "utf8");
   const config = YAML.parse(raw);
