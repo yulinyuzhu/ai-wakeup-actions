@@ -26,9 +26,6 @@ jobs:
 
       - run: bun run once
         env:
-          WAKEUP_CC_API_KEY: ${{ secrets.WAKEUP_CC_API_KEY }}
-          WAKEUP_CC_API_URL: ${{ secrets.WAKEUP_CC_API_URL }}
-          WAKEUP_OPENCODE_GO_API_KEY: ${{ secrets.WAKEUP_OPENCODE_GO_API_KEY }}
-          WAKEUP_OPENCODE_GO_API_URL: ${{ secrets.WAKEUP_OPENCODE_GO_API_URL }}
+          WAKEUP_ACCOUNTS: ${{ secrets.WAKEUP_ACCOUNTS }}
           TZ: UTC
           ACCOUNTS_PATH: config/accounts.yaml

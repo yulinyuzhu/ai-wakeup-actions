@@ -27,10 +27,6 @@ function serializeError(err) {
   };
 }
 
-function envName(accountName, keyName) {
-  return `WAKEUP_${accountName.toUpperCase().replace(/\W+/g, "_")}_${keyName}`;
-}
-
 function createModel(account, model, baseURL, apiKey) {
   const p = account.provider || "openai-compatible";
 
@@ -57,17 +53,17 @@ export async function sendAll(accounts) {
     const name = account.name || "unnamed";
     const model = normalizeModel(account.model);
     const provider = account.provider || "openai-compatible";
-    const apiKey = process.env[envName(name, "API_KEY")];
-    const baseURL = process.env[envName(name, "API_URL")];
+    const apiKey = account.api_key;
+    const baseURL = account.api_url;
 
     if (!apiKey) {
-      await error(`[${name}] missing env`, { need: envName(name, "API_KEY") });
+      await error(`[${name}] missing api_key in WAKEUP_ACCOUNTS`);
       results[name] = false;
       continue;
     }
 
     if (provider === "openai-compatible" && !baseURL) {
-      await error(`[${name}] missing env`, { need: envName(name, "API_URL") });
+      await error(`[${name}] missing api_url in WAKEUP_ACCOUNTS`);
       results[name] = false;
       continue;
     }

@@ -8,8 +8,25 @@ const CONFIG_PATH = process.env.ACCOUNTS_PATH || "config/accounts.yaml";
 async function main() {
   const raw = await readFile(CONFIG_PATH, "utf8");
   const config = YAML.parse(raw);
+  const entries = config.accounts || [];
 
-  const accounts = config.accounts || [];
+  let secrets = [];
+  try {
+    secrets = JSON.parse(process.env.WAKEUP_ACCOUNTS || "[]");
+  } catch {
+    console.error("FATAL: WAKEUP_ACCOUNTS is not valid JSON");
+    process.exitCode = 1;
+    return;
+  }
+
+  const accounts = entries.map((entry) => {
+    const secret = secrets.find((s) => s.name === entry.name) || {};
+    return {
+      ...entry,
+      api_key: secret.api_key,
+      api_url: secret.api_url,
+    };
+  });
 
   info("=== WAKEUP START ===", {
     count: accounts.length,

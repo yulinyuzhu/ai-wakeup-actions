@@ -12,18 +12,20 @@
 
 1. **Fork 本仓库**
 
-2. **设置 Secrets**
+2. **设置 Secret**
 
    仓库 `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
 
-   `accounts.yaml` 里有几个账户，每个账户需要 2 个 Secret：
+   创建**一个** Secret，名称 `WAKEUP_ACCOUNTS`，值为 JSON 数组：
 
-   | 账户名 | Secret 1 | Secret 2 |
-   |--------|----------|----------|
-   | `codex` | `WAKEUP_CODEX_API_KEY` | `WAKEUP_CODEX_API_URL` |
-   | `cc` | `WAKEUP_CC_API_KEY` | `WAKEUP_CC_API_URL` |
+   ```json
+   [
+     { "name": "cc",             "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" },
+     { "name": "opencode-go",    "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" }
+   ]
+   ```
 
-   命名规则：`WAKEUP_<名字大写>_API_KEY` / `WAKEUP_<名字大写>_API_URL`
+   每个对象必须包含 `name`（与 `accounts.yaml` 中的 name 一致）、`api_key`、`api_url`。
 
 3. **启用 Actions**
 
@@ -41,7 +43,7 @@
 
 ## 添加新账户
 
-1. 编辑 `config/accounts.yaml`，在 `accounts` 列表末尾追加一段：
+1. 编辑 `config/accounts.yaml`，在 `accounts` 列表末尾追加：
 
 ```yaml
   - name: "new-account"
@@ -52,9 +54,13 @@
         content: "ping"
 ```
 
-2. 添加 2 个 Secret：`WAKEUP_NEW_ACCOUNT_API_KEY` / `WAKEUP_NEW_ACCOUNT_API_URL`（注意连接线 `-` 在 env 名里会变成 `_`）
+2. 编辑 `WAKEUP_ACCOUNTS` Secret，在 JSON 数组里追加一条：
 
-3. 推送
+```json
+{ "name": "new-account", "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" }
+```
+
+3. 推送。**不改 workflow**。
 
 ## 设置触发时间
 

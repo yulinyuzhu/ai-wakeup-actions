@@ -1,8 +1,5 @@
-# Accounts definition. Secrets go to GitHub Secrets / .env, never here.
-#
-# For each account, set env vars:
-#   WAKEUP_<NAME>_API_KEY   (required for all providers)
-#   WAKEUP_<NAME>_API_URL   (required for openai-compatible; optional for others)
+# Accounts definition (no secrets).
+# For each account, add its api_key and api_url to WAKEUP_ACCOUNTS (GitHub Secret / .env).
 #
 # Supported provider values:
 #   - openai-compatible  OpenAI-compatible /v1/chat/completions endpoint. Default.
@@ -24,7 +21,7 @@ accounts:
       - role: "user"
         content: "ping"
 
-#   Example: official OpenAI Responses API (no base_url needed)
+#   Example: official OpenAI Responses API (no api_url needed)
 #   - name: "openai"
 #     provider: "openai-responses"
 #     model: "gpt-4.1"
@@ -32,7 +29,7 @@ accounts:
 #       - role: "user"
 #         content: "ping"
 
-#   Example: official Anthropic API (no base_url needed)
+#   Example: official Anthropic API (no api_url needed)
 #   - name: "anthropic"
 #     provider: "anthropic"
 #     model: "claude-sonnet-4-20250514"

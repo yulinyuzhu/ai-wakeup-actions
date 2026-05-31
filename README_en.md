@@ -12,18 +12,20 @@ At scheduled times each day, the Action sends a message to each configured AI ac
 
 1. **Fork this repo**
 
-2. **Set up Secrets**
+2. **Set up Secret**
 
    Go to `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
 
-   For each account in `accounts.yaml`, add 2 Secrets:
+   Create **one** Secret named `WAKEUP_ACCOUNTS` with a JSON array value:
 
-   | Account | Secret 1 | Secret 2 |
-   |---------|----------|----------|
-   | `codex` | `WAKEUP_CODEX_API_KEY` | `WAKEUP_CODEX_API_URL` |
-   | `cc` | `WAKEUP_CC_API_KEY` | `WAKEUP_CC_API_URL` |
+   ```json
+   [
+     { "name": "cc",             "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" },
+     { "name": "opencode-go",    "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" }
+   ]
+   ```
 
-   Naming convention: `WAKEUP_<UPPERCASE_NAME>_API_KEY` / `WAKEUP_<UPPERCASE_NAME>_API_URL`
+   Each object must have `name` (matching `accounts.yaml`), `api_key`, and `api_url`.
 
 3. **Enable Actions**
 
@@ -52,9 +54,13 @@ At scheduled times each day, the Action sends a message to each configured AI ac
         content: "ping"
 ```
 
-2. Add 2 Secrets: `WAKEUP_NEW_ACCOUNT_API_KEY` / `WAKEUP_NEW_ACCOUNT_API_URL` (hyphens `-` in the name become `_` in the env var)
+2. Edit the `WAKEUP_ACCOUNTS` Secret, append to the JSON array:
 
-3. Push
+```json
+{ "name": "new-account", "api_key": "sk-xxx", "api_url": "https://api.example.com/v1" }
+```
+
+3. Push. **No workflow changes needed.**
 
 ## Setting Trigger Times
 
