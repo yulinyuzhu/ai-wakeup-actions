@@ -26,9 +26,9 @@ jobs:
 
       - run: bun run once
         env:
-          WAKEUP_CODEX_API_KEY: ${{ secrets.WAKEUP_CODEX_API_KEY }}
-          WAKEUP_CODEX_API_URL: ${{ secrets.WAKEUP_CODEX_API_URL }}
           WAKEUP_CC_API_KEY: ${{ secrets.WAKEUP_CC_API_KEY }}
           WAKEUP_CC_API_URL: ${{ secrets.WAKEUP_CC_API_URL }}
-          TZ: UTC            # change to your timezone (e.g. Asia/Shanghai, Europe/Berlin)
+          WAKEUP_OPENCODE_GO_API_KEY: ${{ secrets.WAKEUP_OPENCODE_GO_API_KEY }}
+          WAKEUP_OPENCODE_GO_API_URL: ${{ secrets.WAKEUP_OPENCODE_GO_API_URL }}
+          TZ: UTC
           ACCOUNTS_PATH: config/accounts.yaml
