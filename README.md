@@ -1,5 +1,7 @@
 # AI Subscription Timer Wakeup（GitHub Actions 版）
 
+[English Version](README_en.md)
+
 定时向 AI 服务商发送消息，刷新订阅账户的时间限额。通过 GitHub Actions 免费运行，无需服务器。
 
 ## 工作原理

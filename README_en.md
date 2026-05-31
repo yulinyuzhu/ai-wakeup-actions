@@ -1,5 +1,7 @@
 # AI Subscription Timer Wakeup (GitHub Actions Edition)
 
+[中文版](README.md)
+
 Automatically send messages to AI API providers on a schedule to refresh subscription time limits. Runs on GitHub Actions — zero cost, no server required.
 
 ## How It Works
