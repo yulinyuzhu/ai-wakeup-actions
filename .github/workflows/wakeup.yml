@@ -8,7 +8,7 @@ on:
     - cron: "2 2 * * *"
       timezone: "Europe/Berlin"
     # Single Use Test
-    - cron: "24 2 1 6 *"
+    - cron: "30 2 * * *"
       timezone: "Europe/Berlin"
     - cron: "3 7 * * *"
       timezone: "Europe/Berlin"
