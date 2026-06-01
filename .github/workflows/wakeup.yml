@@ -2,21 +2,13 @@ name: AI Subscription Timer Wakeup
 
 on:
   schedule:
-    # GitHub cron runs in UTC. Convert your local time to UTC to set these.
-    # Example below: local 10:00 (UTC+8) → UTC 02:00 → cron "0 2 * * *"
-    # See README for a DST / timezone reference table.
-    - cron: "2 2 * * *"
-      timezone: "Europe/Berlin"
-    # Single Use Test
-    - cron: "30 2 * * *"
-      timezone: "Europe/Berlin"
-    - cron: "50 0 1 6 *"
-    - cron: "3 7 * * *"
-      timezone: "Europe/Berlin"
-    - cron: "4 12 * * *"
-      timezone: "Europe/Berlin"
-    - cron: "5 17 * * *"
-      timezone: "Europe/Berlin"
+    # Convert your local time to UTC. GitHub cron is always UTC.
+    # Berlin → UTC: 02:00→00:00  07:01→05:01  12:02→10:02  17:03→15:03  (CEST/UTC+2)
+    - cron: "2 0 * * *"
+    - cron: "3 5 * * *"
+    - cron: "4 10 * * *"
+    - cron: "5 15 * * *"
+    - cron: "10 1 * * *"
   workflow_dispatch:
 
 jobs:
