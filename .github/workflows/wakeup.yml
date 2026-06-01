@@ -10,8 +10,7 @@ on:
     # Single Use Test
     - cron: "30 2 * * *"
       timezone: "Europe/Berlin"
-    - cron: "43 2 * * *"
-      timezone: "Europe/Berlin"
+    - cron: "49 0 1 6 *"
     - cron: "3 7 * * *"
       timezone: "Europe/Berlin"
     - cron: "4 12 * * *"
