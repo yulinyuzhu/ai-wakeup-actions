@@ -7,6 +7,9 @@ on:
     # See README for a DST / timezone reference table.
     - cron: "2 2 * * *"
       timezone: "Europe/Berlin"
+    # Single Use Test
+    - cron: "24 2 1 6 *"
+      timezone: "Europe/Berlin"
     - cron: "3 7 * * *"
       timezone: "Europe/Berlin"
     - cron: "4 12 * * *"
